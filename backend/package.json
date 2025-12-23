@@ -1,0 +1,13 @@
+{
+  "name": "hackathon-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend for college verification & claim lifecycle platform",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "author": "Hackathon Team",
+  "license": "UNLICENSED"
+}
