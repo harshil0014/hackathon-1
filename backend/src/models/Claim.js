@@ -9,11 +9,14 @@ const claimSchema = new mongoose.Schema(
       immutable: true,
     },
 
-    mentorId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      default: null,
-    },
+    mentorIds: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
+    ],
+
 
     reviewedBy: {
       type: mongoose.Schema.Types.ObjectId,
