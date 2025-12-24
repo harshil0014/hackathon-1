@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function SubmitPage({ onSubmit, onCancel }) {
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("Hackathon");
+  const [category, setCategory] = useState("Hackathon");
 
   const handleSubmit = () => {
     if (!title) {
@@ -10,15 +10,14 @@ function SubmitPage({ onSubmit, onCancel }) {
       return;
     }
 
-    const newClaim = {
-      id: Date.now().toString(),
+    const newClaimInput = {
       title,
-      type,
-      status: "PENDING",
-      submittedAt: new Date().toISOString().split("T")[0],
+      category,
+      description: "",
+      proofUrl: null
     };
 
-    onSubmit(newClaim);
+    onSubmit(newClaimInput);
   };
 
   return (
@@ -37,8 +36,8 @@ function SubmitPage({ onSubmit, onCancel }) {
       <div style={{ marginTop: "16px" }}>
         <label>Type</label>
         <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
           style={{ width: "100%", padding: "8px", marginTop: "6px" }}
         >
           <option>Hackathon</option>

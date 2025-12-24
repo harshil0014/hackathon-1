@@ -2,6 +2,11 @@ import StatusBadge from "../ui/StatusBadge";
 
 function ClaimCard({ claim, onDelete, onEdit }) {
   const isPending = claim.status === "PENDING";
+  
+  // Format the createdAt date for display
+  const submittedDate = claim.createdAt
+    ? new Date(claim.createdAt).toLocaleDateString()
+    : "—";
 
   return (
     <div
@@ -15,7 +20,7 @@ function ClaimCard({ claim, onDelete, onEdit }) {
       <h4>{claim.title}</h4>
 
       <p style={{ fontSize: "13px", color: "#555" }}>
-        {claim.type} • Submitted on {claim.submittedAt}
+        {claim.category} • Submitted on {submittedDate}
       </p>
 
       <div style={{ marginTop: "8px" }}>

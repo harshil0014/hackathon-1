@@ -1,16 +1,32 @@
 export const mockClaims = [
   {
-    id: "1",
+    id: "1", // mapped from _id
+    studentId: "student-1",
+    mentorIds: [],
     title: "GDG TechSprint 2024",
-    type: "Hackathon",
+    description: "Participated in GDG TechSprint hackathon",
+    category: "Hackathon",
+    proofUrl: null,
     status: "PENDING",
-    submittedAt: "2024-11-20"
+    reviewRemarks: null,
+    reviewedBy: null,
+    reviewedAt: null,
+    createdAt: "2024-11-20T00:00:00.000Z",
+    updatedAt: "2024-11-20T00:00:00.000Z"
   },
   {
     id: "2",
+    studentId: "student-1",
+    mentorIds: ["mentor-1"],
     title: "State Level Quiz",
-    type: "Academic",
+    description: "Secured position in state level quiz",
+    category: "Academic",
+    proofUrl: null,
     status: "APPROVED",
-    submittedAt: "2024-11-10"
+    reviewRemarks: "Well done",
+    reviewedBy: "proctor-1",
+    reviewedAt: "2024-11-12T00:00:00.000Z",
+    createdAt: "2024-11-10T00:00:00.000Z",
+    updatedAt: "2024-11-12T00:00:00.000Z"
   }
 ];
