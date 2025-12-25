@@ -1,32 +1,42 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
 function LoginPage() {
   const { loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     /* global google */
+
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+    if (!clientId) {
+      console.error("VITE_GOOGLE_CLIENT_ID is missing");
+      alert("Google Client ID not configured");
+      return;
+    }
+
     google.accounts.id.initialize({
-      client_id:
-        "1074024818830-d9r17vs6olleii83lte9msddo8bg132j.apps.googleusercontent.com",
+      client_id: clientId,
       callback: async (response) => {
         try {
           const idToken = response.credential;
-
           const user = await loginWithGoogle(idToken);
 
+          // Role-based routing
           if (user.role === "student") {
-            window.location.href = "/student";
+            navigate("/student", { replace: true });
           } else if (user.role === "proctor") {
-            window.location.href = "/proctor";
+            navigate("/proctor", { replace: true });
           } else if (user.role === "mentor") {
-            window.location.href = "/mentor";
+            navigate("/mentor", { replace: true });
           } else {
             alert("Unauthorized role");
           }
         } catch (err) {
-          alert("Login failed");
           console.error(err);
+          alert("Login failed");
         }
       },
     });
@@ -38,7 +48,7 @@ function LoginPage() {
         size: "large",
       }
     );
-  }, [loginWithGoogle]);
+  }, [loginWithGoogle, navigate]);
 
   return (
     <div style={{ padding: "40px", textAlign: "center" }}>
