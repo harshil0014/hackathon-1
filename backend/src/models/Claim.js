@@ -13,16 +13,16 @@ const claimSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
       },
     ],
-
 
     reviewedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       default: null,
     },
+
+    /* ================= BASIC INFO ================= */
 
     title: {
       type: String,
@@ -32,7 +32,7 @@ const claimSchema = new mongoose.Schema(
 
     description: {
       type: String,
-      required: true,
+      default: '',
       trim: true,
     },
 
@@ -41,10 +41,54 @@ const claimSchema = new mongoose.Schema(
       required: true,
     },
 
-    proofUrl: {
+    /* ================= EVENT DETAILS ================= */
+
+    eventName: {
       type: String,
       required: true,
+      trim: true,
     },
+
+    organizer: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    eventStartDate: {
+      type: Date,
+      required: true,
+    },
+
+    eventEndDate: {
+      type: Date,
+      default: null,
+    },
+
+    verificationLink: {
+      type: String,
+      default: null,
+      trim: true,
+    },
+
+    /* ================= PROOF FILE ================= */
+
+    proofFile: {
+      filePath: {
+        type: String,
+        required: true,
+      },
+      originalName: {
+        type: String,
+        required: true,
+      },
+      mimeType: {
+        type: String,
+        required: true,
+      },
+    },
+
+    /* ================= REVIEW ================= */
 
     status: {
       type: String,

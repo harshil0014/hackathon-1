@@ -1,3 +1,5 @@
+// FILE: backend/models/User.js
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
@@ -25,6 +27,38 @@ const userSchema = new mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+
+    /* ===================== STUDENT PROFILE ===================== */
+    // These are REQUIRED for students to submit claims,
+    // but NOT marked `required: true` at schema level
+    // (we enforce completion in business logic)
+
+    department: {
+      type: String,
+      trim: true,
+    },
+
+    year: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+
+    rollNo: {
+      type: String,
+      trim: true,
+      index: true,
+    },
+
+    githubUrl: {
+      type: String,
+      trim: true,
+    },
+
+    linkedinUrl: {
+      type: String,
+      trim: true,
     },
   },
   {
